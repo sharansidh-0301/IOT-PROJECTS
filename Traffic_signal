@@ -1,0 +1,28 @@
+#define PIR_PIN 2  
+#define RED_LED 9  
+#define GREEN_LED 10  
+
+void setup() {
+    pinMode(PIR_PIN, INPUT);
+    pinMode(RED_LED, OUTPUT);
+    pinMode(GREEN_LED, OUTPUT);
+
+    digitalWrite(RED_LED, HIGH);  // Start with RED ON
+    digitalWrite(GREEN_LED, LOW);
+}
+
+void loop() {
+    int motion = digitalRead(PIR_PIN);  // Read PIR sensor
+
+    if (motion == HIGH) {  
+        digitalWrite(RED_LED, LOW);   // Turn OFF Red
+        digitalWrite(GREEN_LED, HIGH); // Turn ON Green
+        delay(5000);  // Keep Green ON for 5 sec
+
+        digitalWrite(GREEN_LED, LOW);  // Turn OFF Green
+        digitalWrite(RED_LED, HIGH);   // Turn ON Red
+    } else {
+        digitalWrite(RED_LED, HIGH);  // Keep Red ON
+        digitalWrite(GREEN_LED, LOW);
+    }
+}
