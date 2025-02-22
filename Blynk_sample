@@ -1,0 +1,30 @@
+
+#define BLYNK_TEMPLATE_ID "TMPL3MNKjIJfu"
+#define BLYNK_TEMPLATE_NAME "First Project"
+#define BLYNK_AUTH_TOKEN "i_L7NXB7Bw0Ty7m6NtsVl7mqMlRsKgzj"
+int D4= 2;
+
+//Include the library files
+#define BLYNK_PRINT Serial
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+char auth[] = BLYNK_AUTH_TOKEN;
+char ssid[] = "";//Enter your WIFI name
+char pass[] = "";//Enter your WIFI password
+
+//Get the button value
+BLYNK_WRITE(V0) {
+  digitalWrite(D4,param.asInt());
+}
+
+void setup() {
+  //Set the LED pin as an output pin
+  pinMode(D4, OUTPUT);
+  //Initialize the Blynk library
+  Blynk.begin(auth, ssid, pass, "blynk.cloud", 80);
+}
+
+void loop() {
+  //Run the Blynk library
+  Blynk.run();
+}
